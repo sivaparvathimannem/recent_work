@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/install
+
+Name: move2point
+Description: Description of move2point
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

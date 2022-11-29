@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/devel
+
+Name: test_stand
+Description: Description of test_stand
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

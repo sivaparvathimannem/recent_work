@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="gripper" params="prefix">
+    <xacro:include filename="$(find gripper)/urdf/gripper.gazebo" />
+
+    <!-- link list -->
+    <link name="${prefix}frame_top_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/frame_top.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/frame_top.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}finger_1_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}finger_2_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}finger_3_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/finger.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}knife_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/knife.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/knife.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <!-- <link name="${prefix}frame_bot_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://gripper/meshes/frame_bot.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://gripper/meshes/frame_bot.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link> -->
+    <!-- end of link list -->
+
+    <xacro:property name="joint_d" value="1" />
+    <xacro:property name="joint_eff" value="10000" />
+    <xacro:property name="joint_vel" value="20" />
+    <xacro:property name="joint_f" value="10" />
+
+    <!-- joint list -->
+    <joint name="${prefix}finger_1_top_joint" type="revolute">
+      <parent link="${prefix}frame_top_link"/>
+      <child link="${prefix}finger_1_link"/>
+      <origin xyz="-0.12521 0.21465 -0.13288" rpy="${radians(-5.45)} ${radians(0)} ${radians(-151)}" />
+      <axis xyz="1 0 0" />
+      <limit lower="${radians(-30)}" upper="${radians(10)}" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint>
+    <joint name="${prefix}finger_2_top_joint" type="revolute">
+      <parent link="${prefix}frame_top_link"/>
+      <child link="${prefix}finger_2_link"/>
+      <origin xyz="-0.24208 0 -0.13288" rpy="${radians(-5.45)} ${radians(0)} ${radians(-90)}" />
+      <axis xyz="1 0 0" />
+      <limit lower="${radians(-30)}" upper="${radians(10)}" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint>
+    <joint name="${prefix}finger_3_top_joint" type="revolute">
+      <parent link="${prefix}frame_top_link"/>
+      <child link="${prefix}finger_3_link"/>
+      <origin xyz="-0.12521 -0.21465 -0.13288" rpy="${radians(-5.45)} ${radians(0)} ${radians(-29)}" />
+      <axis xyz="1 0 0" />
+      <limit lower="${radians(-30)}" upper="${radians(10)}" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint>
+    <joint name="${prefix}knife_top_joint" type="revolute">
+      <parent link="${prefix}frame_top_link"/>
+      <child link="${prefix}knife_link"/>
+      <origin xyz="0.24033 0 -0.13496" rpy="${radians(0)} ${radians(0)} ${radians(0)}" />
+      <axis xyz="0 1 0" />
+      <limit lower="${radians(-10)}" upper="${radians(25)}" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint>
+    <!-- <joint name="${prefix}bot_top_joint" type="prismatic">
+      <parent link="${prefix}frame_top_link"/>
+      <child link="${prefix}frame_bot_link"/>
+      <origin xyz="0 0 -0.076675" rpy="${radians(0)} ${radians(0)} ${radians(0)}" />
+      <axis xyz="0 0 1" />
+      <limit lower="0" upper="-0.09" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint> -->
+    <!-- end of joint list -->
+
+    <!-- joint controller list -->
+    <xacro:simple_transmission name="${prefix}finger_1_top_joint" interface="hardware_interface/EffortJointInterface" />
+    <xacro:simple_transmission name="${prefix}finger_2_top_joint" interface="hardware_interface/EffortJointInterface" />
+    <xacro:simple_transmission name="${prefix}finger_3_top_joint" interface="hardware_interface/EffortJointInterface" />
+    <xacro:simple_transmission name="${prefix}knife_top_joint" interface="hardware_interface/EffortJointInterface" />
+    <!-- end of joint controller list -->
+
+    <gazebo reference="${prefix}finger_1_link">
+      <gravity>0</gravity>
+    </gazebo>
+    <gazebo reference="${prefix}finger_2_link">
+      <gravity>0</gravity>
+    </gazebo>
+    <gazebo reference="${prefix}finger_3_link">
+      <gravity>0</gravity>
+    </gazebo>
+    <gazebo reference="{prefix}knife_link">
+      <gravity>0</gravity>
+    </gazebo>
+    <gazebo reference="{prefix}frame_top_link">
+      <gravity>0</gravity>
+    </gazebo>
+  </xacro:macro>
+</robot>

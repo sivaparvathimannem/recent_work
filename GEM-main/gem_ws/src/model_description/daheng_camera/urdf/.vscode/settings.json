@@ -1,0 +1,8 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/tingsheng/cGEM/gem_ws/devel/lib/python3/dist-packages",
+        "/home/tingsheng/ws_moveit/devel/lib/python3/dist-packages",
+        "/home/tingsheng/ETAS-A/metarob_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

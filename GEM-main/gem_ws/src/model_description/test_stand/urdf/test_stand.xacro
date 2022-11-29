@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<robot name="test_stand" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find test_stand)/urdf/test_stand_macro.xacro" />
+  <xacro:include filename="$(find yaskawa_hc10)/urdf/hc10_macro.xacro" />
+  <xacro:include filename="$(find gripper)/urdf/gripper_macro.xacro" />
+  <xacro:include filename="$(find depth_camera)/urdf/depth_camera_macro.xacro" />
+  <xacro:include filename="$(find daheng_camera)/urdf/daheng_macro.xacro" />
+  
+  <!-- Joint controller -->
+  <gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+  </gazebo>
+
+  <xacro:test_stand prefix=""/>
+  <link name="world"/>
+  <joint name="stand_fixed" type="fixed">
+    <parent link="world"/>
+    <child link="test_stand_link"/>
+  </joint>
+
+  <xacro:motoman_hc10 prefix=""/>
+  <joint name="robot_fixed" type="fixed">
+    <parent link="robot_base_link"/>
+    <child link="base_link"/>
+    <origin xyz="0 -0.7 0" rpy="0 0 0" />
+  </joint>
+
+  <xacro:gripper prefix=""/>
+  <joint name="gripper_top_fixed" type="fixed">
+    <parent link="link_6_t"/>
+    <child link="frame_top_link"/>
+    <origin xyz="0 0 -0.16" rpy="0 0 0" />
+  </joint>
+
+  <xacro:depth_camera prefix=""/>
+  <joint name="camera_fixed" type="fixed">
+    <parent link="test_stand_link"/>
+    <child link="depth_camera_link"/>
+    <origin xyz="-0.1 -1.95 1.35" rpy="3.1415 2.2 -1.5708" />
+  </joint>
+
+  <xacro:daheng/>
+  <joint name="daheng_camera_fixed" type="fixed">
+    <parent link="test_stand_link"/>
+    <child link="daheng_camera_link"/>
+    <origin xyz="0.1 -1.95 1.36" rpy="1 0 3.1415" />
+  </joint>
+
+</robot>
+

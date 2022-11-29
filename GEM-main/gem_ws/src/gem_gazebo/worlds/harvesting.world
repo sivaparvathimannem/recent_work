@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+  <!-- Ground plane and lighting -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="table">
+      <include>
+        <static>true</static>
+        <pose>0 0 0 0 0 0</pose>
+        <uri>model://table</uri>
+      </include>
+    </model>
+
+    <!-- <model name="tea_plants">
+      <include>
+        <static>true</static>
+        <pose>0 -0.95 0.8 0 0 0</pose>
+        <uri>model://tea_plants</uri>
+      </include>
+    </model> -->
+
+    <model name="vege">
+      <include>
+        <static>false</static>
+        <pose>0 -0.7 0.8 0 0 0</pose>
+        <uri>model://vege</uri>
+      </include>
+    </model>
+
+  </world>
+</sdf>

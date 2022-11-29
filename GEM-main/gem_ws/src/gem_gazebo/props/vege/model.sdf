@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+  <model name="vege">
+    <link name="link">
+    <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://vege/meshes/vege.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <mesh>
+            <uri>model://vege/meshes/vege.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

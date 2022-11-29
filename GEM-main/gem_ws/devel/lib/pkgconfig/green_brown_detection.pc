@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/devel
+
+Name: green_brown_detection
+Description: Description of green_brown_detection
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

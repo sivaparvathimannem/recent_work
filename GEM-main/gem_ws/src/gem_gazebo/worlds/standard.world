@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+  <!-- Ground plane and lighting -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+  <!-- ***************************** -->
+
+    <!-- <include>
+      <static>true</static>
+      <pose>0 -0.85703 0 0 0 0</pose>
+      <uri>model://soil_bed</uri>
+    </include> -->
+
+    <!-- <model name="veg1">
+      <include>
+      <pose>-0.5 -0.8 0 0 0 0</pose>
+      <uri>model://vege</uri>
+    </include>
+    </model>
+    <model name="veg2">
+      <include>
+      <pose>-0.15 -0.8 0 0 0 0</pose>
+      <uri>model://vege</uri>
+    </include>
+    </model>
+    <model name="veg3">
+      <include>
+      <pose>0.2 -0.8 0 0 0 0</pose>
+      <uri>model://vege</uri>
+    </include>
+    </model>
+    <model name="veg4">
+      <include>
+      <pose>0.55 -0.8 0 0 0 0</pose>
+      <uri>model://vege</uri>
+    </include>
+    </model> -->
+
+    <!-- <population name="vege_population">
+      <model name="vege">
+        <include>
+          <static>false</static>
+          <uri>model://vege</uri>
+        </include>
+      </model>
+      <pose>0 -0.8 0 0 0 0</pose>
+      <distribution>
+        <type>grid</type>
+        <rows>4</rows>
+        <cols>4</cols>
+        <step>0.35 0.35 0</step>
+      </distribution>
+    </population> -->
+
+    <model name="checkerbox">
+      <include>
+        <static>true</static>
+        <pose>0 -0.8 0 0 0 0</pose>
+        <uri>model://checkerbox</uri>
+      </include>
+    </model>
+  </world>
+</sdf>

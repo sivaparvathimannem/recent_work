@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  
+  <arg name="minimal" default="false"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+  
+  <!-- load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find gem_moveit)/config/ros_controllers.yaml" command="load"/>
+
+  <!-- load the joint controllers -->
+  <node name="test_stand_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="yaskawa_arm_controller gripper_controller test_stand_controller joint_state_controller"/>
+
+  <!-- start robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+    <param name="publish_frequency" type="double" value="100.0" />
+    <param name="use_tf_static" type="bool" value="false" />
+  </node>
+
+  <!-- spawn the test stand in gazebo -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find test_stand)/urdf/test_stand.xacro'"/>
+  <node name="test_stand_spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
+   args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y) -param robot_description -model test_stand"/>
+</launch>

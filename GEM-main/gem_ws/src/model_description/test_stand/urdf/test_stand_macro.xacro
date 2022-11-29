@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="test_stand" params="prefix">
+    <xacro:include filename="$(find test_stand)/urdf/test_stand.gazebo" />
+
+    <!-- link list -->
+    <link name="${prefix}test_stand_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://test_stand/meshes/test_stand.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://test_stand/meshes/test_stand.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="100" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+    <link name="${prefix}robot_base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://test_stand/meshes/robot_base.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://test_stand/meshes/robot_base.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+    <!-- end of link list -->
+
+    <xacro:property name="joint_d" value="1" />
+    <xacro:property name="joint_eff" value="1000" />
+    <xacro:property name="joint_vel" value="20" />
+    <xacro:property name="joint_f" value="10" />
+
+    <!-- joint list -->
+    <joint name="${prefix}robot_base_joint" type="prismatic">
+      <parent link="${prefix}test_stand_link"/>
+      <child link="${prefix}robot_base_link"/>
+      <origin xyz="0 0.61995 1.0791" rpy="0 0 0" />
+      <axis xyz="1 0 0" />
+      <limit lower="-0.733" upper="0.733" effort="${joint_eff}" velocity="${joint_vel}"/>
+      <dynamics damping="${joint_d}" friction="${joint_f}" />
+    </joint>
+    <!-- end of joint list -->
+
+    <!-- joint controller list -->
+    <xacro:simple_transmission name="${prefix}robot_base_joint" interface="hardware_interface/EffortJointInterface" />
+    <!-- end of joint controller list -->
+
+  </xacro:macro>
+</robot>

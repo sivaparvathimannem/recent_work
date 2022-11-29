@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<robot name="daheng" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Include -->
+  <xacro:include filename="$(find daheng_camera)/urdf/daheng_macro.xacro" />
+
+  <!-- Variables -->
+  <xacro:daheng/>
+</robot>

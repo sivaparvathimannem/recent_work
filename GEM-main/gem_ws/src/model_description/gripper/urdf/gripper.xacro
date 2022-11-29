@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<robot name="motoman_hc10" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find gripper)/urdf/gripper_macro.xacro" />
+  
+  <!-- Joint controller -->
+  <gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+  </gazebo>
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <xacro:gripper prefix=""/>
+
+  <link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="frame_top_link"/>
+  </joint>
+
+</robot>

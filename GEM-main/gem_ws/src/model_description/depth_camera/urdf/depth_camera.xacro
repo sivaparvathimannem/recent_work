@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<robot name="depth_camera" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Include -->
+  <xacro:include filename="$(find depth_camera)/urdf/depth_camera_macro.xacro" />
+
+  <!-- Variables -->  
+  <xacro:depth_camera prefix=""/>
+</robot>

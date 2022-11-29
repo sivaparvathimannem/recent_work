@@ -1,0 +1,13 @@
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8799950/
+
+https://www.stereolabs.com/docs/object-detection/
+
+https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data
+
+http://wiki.ros.org/dynamic_reconfigure/Tutorials
+
+
+. ~/External/Examples/example_ws/devel/setup.bash
+roslaunch n2_dynamic_parameter number_adjustment.launch 
+
+

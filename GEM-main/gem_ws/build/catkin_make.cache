@@ -1,0 +1,2 @@
+common_resources:etasb_msgs:gem_bringup:gem_camera:gem_gazebo:gem_moveit:green_brown_detection:hc10/hc10_control:hc10/hc10_moveit_config:hc10/hc10dt_moveit_config:model_description/daheng_camera:model_description/depth_camera:model_description/gripper:model_description/test_stand:model_description/yaskawa_hc10:model_description/yaskawa_hc10_moveit:move2point:visual_servo
+-DCATKIN_DEVEL_PREFIX=/home/ailand/GEM-main/gem_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ailand/GEM-main/gem_ws/install -G Unix Makefiles

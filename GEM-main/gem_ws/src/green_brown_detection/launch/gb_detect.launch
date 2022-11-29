@@ -1,0 +1,10 @@
+<launch>
+  
+  <arg name="camera_topic" default="/top_depth_camera/color/image_raw"/>
+  <arg name="node_prefix" default=""/>
+  
+  <node pkg="green_brown_detection" type="gb_detect.py" name="$(arg node_prefix)green_brown_detection" output="screen" >
+    <param name="camera_topic" value="$(arg camera_topic)"/>
+  </node>
+
+</launch>

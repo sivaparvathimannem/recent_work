@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: yaskawa_hc10
+    relative_path: urdf/hc10.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/motoman_hc10.srdf
+  CONFIG:
+    author_name: Ting Sheng Lee
+    author_email: lee@a-i.land
+    generated_timestamp: 1669014285

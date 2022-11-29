@@ -1,0 +1,36 @@
+<launch>
+  <arg name="minimal" default="false"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+    
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find yaskawa_hc10)/config/hc10_control.yaml" command="load"/>
+  
+  <!-- load the joint controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/yaskawa" args="joint_state_controller
+                                        joint1_position_controller
+                                        joint2_position_controller
+                                        joint3_position_controller
+                                        joint4_position_controller
+                                        joint5_position_controller
+                                        joint6_position_controller"/>
+  
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+    <remap from="/joint_states" to="/yaskawa/joint_states" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find industrial_robot_client)/config/robot_state_visualize.rviz" required="true" />
+  
+  <!-- spawn the robot in gazebo -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find yaskawa_hc10)/urdf/hc10.xacro'"/>
+
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
+   args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg R) -P $(arg P) -Y $(arg Y) -param robot_description -model yaskawa_robot"/>
+
+</launch>

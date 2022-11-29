@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/install
+
+Name: hc10_control
+Description: Description of hc10_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

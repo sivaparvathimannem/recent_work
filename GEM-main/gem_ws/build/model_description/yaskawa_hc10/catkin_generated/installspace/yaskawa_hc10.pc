@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/install
+
+Name: yaskawa_hc10
+Description: Description of yaskawa_hc10
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

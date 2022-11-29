@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<robot name="depth_camera" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Include -->
+  <xacro:include filename="$(find yaskawa_hc10)/urdf/hc10_macro.xacro" />
+  <xacro:include filename="$(find depth_camera)/urdf/depth_camera_macro.xacro" />
+
+  <link name="world"/>
+  
+  <!-- Variables -->  
+  <xacro:depth_camera prefix="top_"/>
+  <joint name="camera_fixed" type="fixed">
+    <parent link="world"/>
+    <child link="top_depth_camera_link"/>
+    <origin xyz="0.2 -0.42 2.8 " rpy="3.1415 1.5707 1.5708" />
+  </joint>
+  
+
+  <!-- Joint controller -->
+  <gazebo>
+		<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so"/>
+  </gazebo>
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+  <xacro:motoman_hc10 prefix=""/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.83 " rpy="0 0 0" />
+  </joint>
+
+  <xacro:depth_camera prefix="robot_"/>
+  <joint name="robot_camera_fixed" type="fixed">
+    <parent link="link_6_t"/>
+    <child link="robot_depth_camera_link"/>
+    <origin xyz="-0.065 0 -0.15" rpy="0 1.5708 0" />
+  </joint>
+  
+</robot>

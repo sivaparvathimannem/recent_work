@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Harvesting
+Comment=ROS - Harvesting
+Exec=bash -c "source ~/.bashrc; source /opt/ros/noetic/setup.bash;source ~/0-Repos/GEM/gem_ws/devel/setup.bash; export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/0-Repos/GEM/gem_ws/src/gem_gazebo/props; roslaunch gem_bringup harvesting.launch"
+Icon=/home/tingsheng/0-Repos/GEM/gem_ws/src/gem_bringup/shortcut/icon/harvesting.png
+Type=Application
+Categories=ROS
+StartupNotify=true
+Terminal=true
+TerminalOptions=bash

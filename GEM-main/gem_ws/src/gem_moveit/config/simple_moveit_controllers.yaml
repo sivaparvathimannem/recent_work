@@ -1,0 +1,27 @@
+controller_list:
+  - name: yaskawa_arm_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint_1_s
+      - joint_2_l
+      - joint_3_u
+      - joint_4_r
+      - joint_5_b
+      - joint_6_t
+  - name: gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - finger_1_top_joint
+      - finger_2_top_joint
+      - finger_3_top_joint
+      - knife_top_joint
+  - name: test_stand_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - robot_base_joint

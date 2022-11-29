@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="depth_camera" params="prefix">
+
+    <!-- Camera Link -->
+    <link name="${prefix}depth_camera_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://depth_camera/meshes/depth_camera.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://depth_camera/meshes/depth_camera.dae"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="1" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+      </inertial>
+    </link>
+
+    <link name="${prefix}depth_camera_link_optical"/>
+
+    <joint name="${prefix}depth_optical_joint" type="fixed">
+      <!-- these values have to be these values otherwise the gazebo camera
+          image won't be aligned properly with the frame it is supposedly
+          originating from -->
+      <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+      <!-- <origin xyz="0 0 0" rpy="0 3.1415 1.5708"/> -->
+      <parent link="${prefix}depth_camera_link"/>
+      <child link="${prefix}depth_camera_link_optical"/>
+    </joint>
+
+    <!-- Camera plugin-->
+    <gazebo reference="${prefix}depth_camera_link">
+      <sensor name="${prefix}depth_camera" type="depth">
+        <update_rate>20</update_rate>
+        <camera>
+          <horizontal_fov>1</horizontal_fov>
+          <vertical_fov>1</vertical_fov>
+          <image>
+            <width>1280</width>
+            <height>1280</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.08</near>
+            <far>3</far>
+          </clip>
+        </camera>
+        <plugin name="${prefix}depth_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>10</updateRate>
+          <cameraName>${prefix}depth_camera</cameraName>
+          <imageTopicName>/${prefix}depth_camera/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/${prefix}depth_camera/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/${prefix}depth_camera/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/${prefix}depth_camera/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/${prefix}depth_camera/depth/points</pointCloudTopicName>
+          <frameName>${prefix}depth_camera_link_optical</frameName>
+          <pointCloudCutoff>0.0.8</pointCloudCutoff>
+          <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
+          <distortionK1>0.0000000</distortionK1>
+          <distortionK2>0.0000000</distortionK2>
+          <distortionK3>0.0000000</distortionK3>
+          <distortionT1>0.0000000</distortionT1>
+          <distortionT2>0.0000000</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

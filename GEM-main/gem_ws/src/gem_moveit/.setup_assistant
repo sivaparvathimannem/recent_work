@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: test_stand
+    relative_path: urdf/test_stand.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/test_stand.srdf
+  CONFIG:
+    author_name: Ting Sheng Lee
+    author_email: lee@a-i.land
+    generated_timestamp: 1662962901

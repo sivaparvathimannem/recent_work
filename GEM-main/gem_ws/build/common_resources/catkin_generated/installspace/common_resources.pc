@@ -1,0 +1,8 @@
+prefix=/home/ailand/GEM-main/gem_ws/install
+
+Name: common_resources
+Description: Description of common_resources
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
